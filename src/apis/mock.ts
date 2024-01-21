@@ -1,42 +1,42 @@
-import GlobalFetch from 'alova/GlobalFetch'
-import { createAlovaMockAdapter, defineMock } from '@alova/mock'
+import GlobalFetch from "alova/GlobalFetch";
+import { createAlovaMockAdapter, defineMock } from "@alova/mock";
 
 const mockGroup1 = defineMock(
   {
     // 捕获get请求
-    '[GET]/area': () => {
-      console.log('我执行了')
+    "[GET]/area": () => {
+      console.log("我执行了");
       return {
         code: 200,
-        message: 'ok',
+        message: "ok",
         data: [{ area: 1 }, { area: 2 }]
-      }
+      };
     },
 
     // rest风格请求
-    '/todo/{id}': ({ params }) => {
-      const id = params.id
+    "/todo/{id}": ({ params }) => {
+      const id = params.id;
       // ...
       return {
-        title: '...',
-        time: '10:00'
-      }
+        title: "...",
+        time: "10:00"
+      };
     },
 
     // 捕获post请求
-    '[POST]/todo': ({ query, data }) => {
+    "[POST]/todo": ({ query, data }) => {
       // ...
-      return { success: true }
+      return { success: true };
     },
 
     // key前面添加`-`，表示禁用此mock接口
-    '-[DELETE]/todo/{id}': ({ params }) => {
+    "-[DELETE]/todo/{id}": ({ params }) => {
       // ...
-      return { success: true }
+      return { success: true };
     }
   },
   true
-) // 第二个参数表示是否启用本组mock接口，默认为true，可以指定为false关闭
+); // 第二个参数表示是否启用本组mock接口，默认为true，可以指定为false关闭
 
 export const mockAdapter = createAlovaMockAdapter([mockGroup1 /** ... */], {
   // 全局控制是否启用mock接口，默认为true
@@ -58,7 +58,7 @@ export const mockAdapter = createAlovaMockAdapter([mockGroup1 /** ... */], {
     return {
       response: new Response(JSON.stringify(data)),
       ...new Response(JSON.stringify(data))
-    }
+    };
   }
   // onMockResponse: (data) => new Response(JSON.stringify(data))
-})
+});

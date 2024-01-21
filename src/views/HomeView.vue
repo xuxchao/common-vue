@@ -9,6 +9,6 @@
   </main>
 </template>
 <script setup lang="ts">
-import { createArea, useRequest, areaList } from '@/apis'
-const { data, loading } = useRequest(areaList)
+import { createArea, useRequest, areaList } from "@/apis";
+const { data, loading } = useRequest(areaList);
 </script>
